@@ -1,0 +1,26 @@
+<aura:component controller="SessionController" implements="flexipage:availableForAllPageTypes" access="global">
+    
+    <aura:attribute name="notifications" type="Object[]"/>
+    
+ 	<aura:handler name="init" value="{!this}" action="{!c.onInit}"/>   
+    <ltng:require scripts="{!$Resource.cometdjs}" afterScriptsLoaded="{!c.onCometdLoaded}"/>
+    
+    <aura:attribute name="sessionId" type="String"/>
+    <aura:attribute name="cometd" type="Object"/>
+    <aura:attribute name="cometdSubscriptions" type="Object[]"/>
+    
+   <div class="container"> 
+    <!-- Notification list -->
+    <div class="slds-container--fluid slds-scrollable--y content">
+      <aura:iteration items="{!v.notifications}" var="notification">
+        <div class="slds-p-around--small slds-border--top">
+          <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+            <p>{!notification.message}</p>
+            <p class="slds-text-color--weak slds-p-left--x-small">{!notification.time}</p>
+          </div>
+        </div>
+      </aura:iteration>
+    </div>
+
+  </div>
+</aura:component>
